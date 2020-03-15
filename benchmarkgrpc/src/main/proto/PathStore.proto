@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option java_multiple_files = false;
+option java_package = "pathstore.grpc";
+option java_outer_classname = "pathStoreProto";
+option objc_class_prefix = "PSP";
+
+package pathstore;
+
+// String addQueryEntry(String keyspace, String table, byte[] clauses, int limit) throws RemoteException;
+
+// String addUserCommandEntry(String user, String keyspace, String table, byte[] clauses, int limit) throws RemoteException, PathMigrateAlreadyGoneException;
+
+// UUID createQueryDelta(String keyspace, String table, byte[] clauses, UUID parentTimestamp, int nodeID, int limit) throws RemoteException;
+
+service PathStoreService{
+
+    // chile will call addUserCommandEntry
+    rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+
+// The request message containing the user's name.
+message HelloRequest {
+    string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+    string message = 1;
+    int64 back = 2; // time
+}

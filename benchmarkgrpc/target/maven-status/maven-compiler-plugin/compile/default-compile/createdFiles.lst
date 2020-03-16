@@ -18,8 +18,8 @@ pathstore/grpc/pathStoreProto$HelloRequest.class
 pathstore/grpc/pathStoreProto$HelloReply$1.class
 pathstore/grpc/pathStoreProto$HelloReplyOrBuilder.class
 GRPCServerImpl$1.class
-pathstore/grpc/PathStoreServiceGrpc$2.class
 pathstore/grpc/PathStoreServiceGrpc$PathStoreServiceFileDescriptorSupplier.class
+pathstore/grpc/PathStoreServiceGrpc$2.class
 pathstore/grpc/PathStoreServiceGrpc$PathStoreServiceBaseDescriptorSupplier.class
 pathstore/grpc/PathStoreServiceGrpc.class
 pathstore/grpc/PathStoreServiceGrpc$PathStoreServiceMethodDescriptorSupplier.class

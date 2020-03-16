@@ -19,12 +19,18 @@ public final class pathStoreProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string name = 1;</code>
+     * <code>int32 length = 1;</code>
+     * @return The length.
+     */
+    int getLength();
+
+    /**
+     * <code>string name = 2;</code>
      * @return The name.
      */
     java.lang.String getName();
     /**
-     * <code>string name = 1;</code>
+     * <code>string name = 2;</code>
      * @return The bytes for name.
      */
     com.google.protobuf.ByteString
@@ -80,7 +86,12 @@ public final class pathStoreProto {
             case 0:
               done = true;
               break;
-            case 10: {
+            case 8: {
+
+              length_ = input.readInt32();
+              break;
+            }
+            case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
               name_ = s;
@@ -118,10 +129,20 @@ public final class pathStoreProto {
               pathstore.grpc.pathStoreProto.HelloRequest.class, pathstore.grpc.pathStoreProto.HelloRequest.Builder.class);
     }
 
-    public static final int NAME_FIELD_NUMBER = 1;
+    public static final int LENGTH_FIELD_NUMBER = 1;
+    private int length_;
+    /**
+     * <code>int32 length = 1;</code>
+     * @return The length.
+     */
+    public int getLength() {
+      return length_;
+    }
+
+    public static final int NAME_FIELD_NUMBER = 2;
     private volatile java.lang.Object name_;
     /**
-     * <code>string name = 1;</code>
+     * <code>string name = 2;</code>
      * @return The name.
      */
     public java.lang.String getName() {
@@ -137,7 +158,7 @@ public final class pathStoreProto {
       }
     }
     /**
-     * <code>string name = 1;</code>
+     * <code>string name = 2;</code>
      * @return The bytes for name.
      */
     public com.google.protobuf.ByteString
@@ -168,8 +189,11 @@ public final class pathStoreProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (length_ != 0) {
+        output.writeInt32(1, length_);
+      }
       if (!getNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
       }
       unknownFields.writeTo(output);
     }
@@ -180,8 +204,12 @@ public final class pathStoreProto {
       if (size != -1) return size;
 
       size = 0;
+      if (length_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, length_);
+      }
       if (!getNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -198,6 +226,8 @@ public final class pathStoreProto {
       }
       pathstore.grpc.pathStoreProto.HelloRequest other = (pathstore.grpc.pathStoreProto.HelloRequest) obj;
 
+      if (getLength()
+          != other.getLength()) return false;
       if (!getName()
           .equals(other.getName())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
@@ -211,6 +241,8 @@ public final class pathStoreProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + LENGTH_FIELD_NUMBER;
+      hash = (53 * hash) + getLength();
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -350,6 +382,8 @@ public final class pathStoreProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        length_ = 0;
+
         name_ = "";
 
         return this;
@@ -378,6 +412,7 @@ public final class pathStoreProto {
       @java.lang.Override
       public pathstore.grpc.pathStoreProto.HelloRequest buildPartial() {
         pathstore.grpc.pathStoreProto.HelloRequest result = new pathstore.grpc.pathStoreProto.HelloRequest(this);
+        result.length_ = length_;
         result.name_ = name_;
         onBuilt();
         return result;
@@ -427,6 +462,9 @@ public final class pathStoreProto {
 
       public Builder mergeFrom(pathstore.grpc.pathStoreProto.HelloRequest other) {
         if (other == pathstore.grpc.pathStoreProto.HelloRequest.getDefaultInstance()) return this;
+        if (other.getLength() != 0) {
+          setLength(other.getLength());
+        }
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
           onChanged();
@@ -460,9 +498,39 @@ public final class pathStoreProto {
         return this;
       }
 
+      private int length_ ;
+      /**
+       * <code>int32 length = 1;</code>
+       * @return The length.
+       */
+      public int getLength() {
+        return length_;
+      }
+      /**
+       * <code>int32 length = 1;</code>
+       * @param value The length to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLength(int value) {
+        
+        length_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 length = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLength() {
+        
+        length_ = 0;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object name_ = "";
       /**
-       * <code>string name = 1;</code>
+       * <code>string name = 2;</code>
        * @return The name.
        */
       public java.lang.String getName() {
@@ -478,7 +546,7 @@ public final class pathStoreProto {
         }
       }
       /**
-       * <code>string name = 1;</code>
+       * <code>string name = 2;</code>
        * @return The bytes for name.
        */
       public com.google.protobuf.ByteString
@@ -495,7 +563,7 @@ public final class pathStoreProto {
         }
       }
       /**
-       * <code>string name = 1;</code>
+       * <code>string name = 2;</code>
        * @param value The name to set.
        * @return This builder for chaining.
        */
@@ -510,7 +578,7 @@ public final class pathStoreProto {
         return this;
       }
       /**
-       * <code>string name = 1;</code>
+       * <code>string name = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearName() {
@@ -520,7 +588,7 @@ public final class pathStoreProto {
         return this;
       }
       /**
-       * <code>string name = 1;</code>
+       * <code>string name = 2;</code>
        * @param value The bytes for name to set.
        * @return This builder for chaining.
        */
@@ -593,26 +661,16 @@ public final class pathStoreProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string message = 1;</code>
-     * @return The message.
+     * <code>string backinfo = 1;</code>
+     * @return The backinfo.
      */
-    java.lang.String getMessage();
+    java.lang.String getBackinfo();
     /**
-     * <code>string message = 1;</code>
-     * @return The bytes for message.
+     * <code>string backinfo = 1;</code>
+     * @return The bytes for backinfo.
      */
     com.google.protobuf.ByteString
-        getMessageBytes();
-
-    /**
-     * <pre>
-     * time
-     * </pre>
-     *
-     * <code>int64 back = 2;</code>
-     * @return The back.
-     */
-    long getBack();
+        getBackinfoBytes();
   }
   /**
    * <pre>
@@ -631,7 +689,7 @@ public final class pathStoreProto {
       super(builder);
     }
     private HelloReply() {
-      message_ = "";
+      backinfo_ = "";
     }
 
     @java.lang.Override
@@ -667,12 +725,7 @@ public final class pathStoreProto {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              message_ = s;
-              break;
-            }
-            case 16: {
-
-              back_ = input.readInt64();
+              backinfo_ = s;
               break;
             }
             default: {
@@ -707,54 +760,40 @@ public final class pathStoreProto {
               pathstore.grpc.pathStoreProto.HelloReply.class, pathstore.grpc.pathStoreProto.HelloReply.Builder.class);
     }
 
-    public static final int MESSAGE_FIELD_NUMBER = 1;
-    private volatile java.lang.Object message_;
+    public static final int BACKINFO_FIELD_NUMBER = 1;
+    private volatile java.lang.Object backinfo_;
     /**
-     * <code>string message = 1;</code>
-     * @return The message.
+     * <code>string backinfo = 1;</code>
+     * @return The backinfo.
      */
-    public java.lang.String getMessage() {
-      java.lang.Object ref = message_;
+    public java.lang.String getBackinfo() {
+      java.lang.Object ref = backinfo_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        message_ = s;
+        backinfo_ = s;
         return s;
       }
     }
     /**
-     * <code>string message = 1;</code>
-     * @return The bytes for message.
+     * <code>string backinfo = 1;</code>
+     * @return The bytes for backinfo.
      */
     public com.google.protobuf.ByteString
-        getMessageBytes() {
-      java.lang.Object ref = message_;
+        getBackinfoBytes() {
+      java.lang.Object ref = backinfo_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        message_ = b;
+        backinfo_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
-    }
-
-    public static final int BACK_FIELD_NUMBER = 2;
-    private long back_;
-    /**
-     * <pre>
-     * time
-     * </pre>
-     *
-     * <code>int64 back = 2;</code>
-     * @return The back.
-     */
-    public long getBack() {
-      return back_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -771,11 +810,8 @@ public final class pathStoreProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getMessageBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, message_);
-      }
-      if (back_ != 0L) {
-        output.writeInt64(2, back_);
+      if (!getBackinfoBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, backinfo_);
       }
       unknownFields.writeTo(output);
     }
@@ -786,12 +822,8 @@ public final class pathStoreProto {
       if (size != -1) return size;
 
       size = 0;
-      if (!getMessageBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, message_);
-      }
-      if (back_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, back_);
+      if (!getBackinfoBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, backinfo_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -808,10 +840,8 @@ public final class pathStoreProto {
       }
       pathstore.grpc.pathStoreProto.HelloReply other = (pathstore.grpc.pathStoreProto.HelloReply) obj;
 
-      if (!getMessage()
-          .equals(other.getMessage())) return false;
-      if (getBack()
-          != other.getBack()) return false;
+      if (!getBackinfo()
+          .equals(other.getBackinfo())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -823,11 +853,8 @@ public final class pathStoreProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
-      hash = (53 * hash) + getMessage().hashCode();
-      hash = (37 * hash) + BACK_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getBack());
+      hash = (37 * hash) + BACKINFO_FIELD_NUMBER;
+      hash = (53 * hash) + getBackinfo().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -965,9 +992,7 @@ public final class pathStoreProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        message_ = "";
-
-        back_ = 0L;
+        backinfo_ = "";
 
         return this;
       }
@@ -995,8 +1020,7 @@ public final class pathStoreProto {
       @java.lang.Override
       public pathstore.grpc.pathStoreProto.HelloReply buildPartial() {
         pathstore.grpc.pathStoreProto.HelloReply result = new pathstore.grpc.pathStoreProto.HelloReply(this);
-        result.message_ = message_;
-        result.back_ = back_;
+        result.backinfo_ = backinfo_;
         onBuilt();
         return result;
       }
@@ -1045,12 +1069,9 @@ public final class pathStoreProto {
 
       public Builder mergeFrom(pathstore.grpc.pathStoreProto.HelloReply other) {
         if (other == pathstore.grpc.pathStoreProto.HelloReply.getDefaultInstance()) return this;
-        if (!other.getMessage().isEmpty()) {
-          message_ = other.message_;
+        if (!other.getBackinfo().isEmpty()) {
+          backinfo_ = other.backinfo_;
           onChanged();
-        }
-        if (other.getBack() != 0L) {
-          setBack(other.getBack());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1081,120 +1102,78 @@ public final class pathStoreProto {
         return this;
       }
 
-      private java.lang.Object message_ = "";
+      private java.lang.Object backinfo_ = "";
       /**
-       * <code>string message = 1;</code>
-       * @return The message.
+       * <code>string backinfo = 1;</code>
+       * @return The backinfo.
        */
-      public java.lang.String getMessage() {
-        java.lang.Object ref = message_;
+      public java.lang.String getBackinfo() {
+        java.lang.Object ref = backinfo_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          message_ = s;
+          backinfo_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string message = 1;</code>
-       * @return The bytes for message.
+       * <code>string backinfo = 1;</code>
+       * @return The bytes for backinfo.
        */
       public com.google.protobuf.ByteString
-          getMessageBytes() {
-        java.lang.Object ref = message_;
+          getBackinfoBytes() {
+        java.lang.Object ref = backinfo_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          message_ = b;
+          backinfo_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string message = 1;</code>
-       * @param value The message to set.
+       * <code>string backinfo = 1;</code>
+       * @param value The backinfo to set.
        * @return This builder for chaining.
        */
-      public Builder setMessage(
+      public Builder setBackinfo(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        message_ = value;
+        backinfo_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string message = 1;</code>
+       * <code>string backinfo = 1;</code>
        * @return This builder for chaining.
        */
-      public Builder clearMessage() {
+      public Builder clearBackinfo() {
         
-        message_ = getDefaultInstance().getMessage();
+        backinfo_ = getDefaultInstance().getBackinfo();
         onChanged();
         return this;
       }
       /**
-       * <code>string message = 1;</code>
-       * @param value The bytes for message to set.
+       * <code>string backinfo = 1;</code>
+       * @param value The bytes for backinfo to set.
        * @return This builder for chaining.
        */
-      public Builder setMessageBytes(
+      public Builder setBackinfoBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        message_ = value;
-        onChanged();
-        return this;
-      }
-
-      private long back_ ;
-      /**
-       * <pre>
-       * time
-       * </pre>
-       *
-       * <code>int64 back = 2;</code>
-       * @return The back.
-       */
-      public long getBack() {
-        return back_;
-      }
-      /**
-       * <pre>
-       * time
-       * </pre>
-       *
-       * <code>int64 back = 2;</code>
-       * @param value The back to set.
-       * @return This builder for chaining.
-       */
-      public Builder setBack(long value) {
-        
-        back_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * time
-       * </pre>
-       *
-       * <code>int64 back = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearBack() {
-        
-        back_ = 0L;
+        backinfo_ = value;
         onChanged();
         return this;
       }
@@ -1270,12 +1249,12 @@ public final class pathStoreProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017PathStore.proto\022\tpathstore\"\034\n\014HelloReq" +
-      "uest\022\014\n\004name\030\001 \001(\t\"+\n\nHelloReply\022\017\n\007mess" +
-      "age\030\001 \001(\t\022\014\n\004back\030\002 \001(\0032P\n\020PathStoreServ" +
-      "ice\022<\n\010SayHello\022\027.pathstore.HelloRequest" +
-      "\032\025.pathstore.HelloReply\"\000B(\n\016pathstore.g" +
-      "rpcB\016pathStoreProtoP\000\242\002\003PSPb\006proto3"
+      "\n\017PathStore.proto\022\tpathstore\",\n\014HelloReq" +
+      "uest\022\016\n\006length\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\"\036\n\nHe" +
+      "lloReply\022\020\n\010backinfo\030\001 \001(\t2P\n\020PathStoreS" +
+      "ervice\022<\n\010SayHello\022\027.pathstore.HelloRequ" +
+      "est\032\025.pathstore.HelloReply\"\000B(\n\016pathstor" +
+      "e.grpcB\016pathStoreProtoP\000\242\002\003PSPb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1286,13 +1265,13 @@ public final class pathStoreProto {
     internal_static_pathstore_HelloRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_pathstore_HelloRequest_descriptor,
-        new java.lang.String[] { "Name", });
+        new java.lang.String[] { "Length", "Name", });
     internal_static_pathstore_HelloReply_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_pathstore_HelloReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_pathstore_HelloReply_descriptor,
-        new java.lang.String[] { "Message", "Back", });
+        new java.lang.String[] { "Backinfo", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

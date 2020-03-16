@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface RMIServer extends Remote{
 
-    Long greeter(String name) throws RemoteException;
+    String greeter(String name) throws RemoteException;
 
 }

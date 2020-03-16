@@ -26,6 +26,20 @@ public class GRPCServerImpl {
     private final int port;
     private final Server server;
 
+    static String getString(int n){
+        String baseString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
+                "0123456789" +
+                "abcdefghijklmnopqrstuvwxyz";
+
+        StringBuilder sb = new StringBuilder(n);
+
+        for (int i = 0; i < n; i++){
+            int index = (int) (baseString.length() * Math.random());
+            sb.append(baseString.charAt(index));
+        }
+        return sb.toString();
+    }
+
     /** Create a PathStore server using serverBuilder as a base. */
     public GRPCServerImpl(int port) throws IOException {
         this.port = port;
@@ -78,8 +92,10 @@ public class GRPCServerImpl {
         @Override
         public void sayHello(HelloRequest request, StreamObserver<HelloReply> responseObserver) {
             long cur_time = System.nanoTime();
-            HelloReply reply = HelloReply.newBuilder().setMessage("Hello " + request.getName())
-                                                        .setBack(cur_time).build();
+
+            String replystr = getString(request.getLength());
+
+            HelloReply reply = HelloReply.newBuilder().setBackinfo(replystr).build();
             responseObserver.onNext(reply);
             responseObserver.onCompleted();
         }

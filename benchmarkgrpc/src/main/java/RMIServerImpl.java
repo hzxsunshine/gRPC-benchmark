@@ -10,15 +10,31 @@ public class RMIServerImpl extends UnicastRemoteObject implements RMIServer{
 
     private static final Logger logger = Logger.getLogger(RMIServerImpl.class.getName());
 
+    private static int count = 0;
+
+    static String getString(int n){
+        String baseString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
+                "0123456789" +
+                "abcdefghijklmnopqrstuvwxyz";
+
+        StringBuilder sb = new StringBuilder(n);
+
+        for (int i = 0; i < n; i++){
+            int index = (int) (baseString.length() * Math.random());
+            sb.append(baseString.charAt(index));
+        }
+        return sb.toString();
+    }
+
     @Override
-    public Long greeter(String name) {
+    public String greeter(String name) {
 
         long cur_time = System.nanoTime();
 
-        System.out.println("It seems rmi cannot return a bundle back");
-        System.out.println("Greetings are from client to server");
+        int length = (int)Math.pow(2, (6 + count % 50000));
+        String st = getString(length);
 
-        return cur_time;
+        return st;
     }
 
     public static final String MESSAGE = "Hello World";
